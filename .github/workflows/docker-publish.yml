@@ -45,3 +45,11 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }}
             ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }}-${{ steps.get_sha.outputs.short_sha }}
             ghcr.io/${{ github.repository }}:${{ github.sha }}
+
+      - name: Output pushed tags
+        run: |
+          echo "Pushed tags:" >> $GITHUB_STEP_SUMMARY
+          echo "- ghcr.io/${{ github.repository }}:latest" >> $GITHUB_STEP_SUMMARY
+          echo "- ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- ghcr.io/${{ github.repository }}:${{ steps.get_version.outputs.version }}-${{ steps.get_sha.outputs.short_sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- ghcr.io/${{ github.repository }}:${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
