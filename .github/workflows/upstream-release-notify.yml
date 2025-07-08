@@ -9,6 +9,10 @@ jobs:
   check-upstream-release:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository (shallow)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
       - name: Get latest upstream release
         id: get_release
         run: |
