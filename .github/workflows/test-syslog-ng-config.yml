@@ -1,0 +1,16 @@
+name: Test syslog-ng Config
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test-syslog-ng-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test syslog-ng.conf with syslog-ng container
+        run: |
+          docker run --rm -v $(pwd)/syslog-ng.conf:/var/syslog-ng.conf balabit/syslog-ng -f /var/syslog-ng.conf --check-startup
