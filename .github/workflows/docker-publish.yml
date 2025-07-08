@@ -18,7 +18,7 @@ jobs:
       - name: Get syslog-ng version
         id: get_version
         run: |
-          version=$(grep -Eo 'syslog-ng [0-9]+\.[0-9]+\.[0-9]+' syslog-ng.conf | head -n1 | awk '{print $2}')
+          version=$(grep -Eo '\@version: [0-9]+\.[0-9]+(\.[0-9]+)?' syslog-ng.conf | head -n1 | awk '{print $2}')
           if [ -z "$version" ]; then
             echo "Could not determine syslog-ng version from syslog-ng.conf"
             exit 1
